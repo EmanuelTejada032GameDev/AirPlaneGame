@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DebugTesting : MonoBehaviour
 {
-     List<Enemy> enemies = new List<Enemy>()
+     List<SimpleEnemy> enemies = new List<SimpleEnemy>()
     {
-        new Enemy() { hp= 10, damage = 5},
-        new Enemy() { hp= 20, damage = 3},
+        new SimpleEnemy() { hp= 10, damage = 5},
+        new SimpleEnemy() { hp= 20, damage = 3},
     };
 
 
@@ -34,15 +34,24 @@ public class DebugTesting : MonoBehaviour
     [Tooltip("One of the great things on games")]
     public string description = "This is a description";
 
+    public Dictionary<string, PlayerData> playerDict = new Dictionary<string, PlayerData>();
 
     private void Start()
     {
-        Debug.LogWarning("Send a warning to the console");
-        Debug.LogError("Send a Error to the console");
-        foreach (Enemy enemy in enemies)
-        {
-            Debug.LogFormat($"<color=red> The enemy has {enemy.hp} hp and {enemy.damage} damage </color>");
-        }
+            Debug.LogWarning("Send a warning to the console");
+            Debug.LogError("Send a Error to the console");
+            foreach (SimpleEnemy enemy in enemies)
+            {
+                Debug.LogFormat($"<color=red> The enemy has {enemy.hp} hp and {enemy.damage} damage </color>");
+            }
+
+            playerDict["PedroElPro"] = new PlayerData("Pedro", 10);
+            playerDict["JMaster"] = new PlayerData("Juan", 100);
+
+            foreach (PlayerData player in playerDict.Values)
+            {
+                Debug.Log(player.name);
+            }
     }
 
     [ContextMenu("Call print name")] // You can have this function on your script menu on the three dots
@@ -51,15 +60,27 @@ public class DebugTesting : MonoBehaviour
         Debug.Log($"Player name is {name}");
     }
 
-    public Enemy enemy;
+    public SimpleEnemy enemy;
 
 }
 
 
 
 [System.Serializable]
-public class Enemy
+public class SimpleEnemy
 {
     public int hp;
     public int damage;
+}
+
+public class PlayerData
+{
+    public string name;
+    public int score;
+
+    public PlayerData(string nameP, int scoreP)
+    {
+        name = nameP;
+        score = scoreP;
+    }
 }
