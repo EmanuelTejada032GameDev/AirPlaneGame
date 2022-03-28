@@ -10,9 +10,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _movementSpeed = 2;
 
-    [SerializeField]
-    private float _rotationSpeed = 2;
-
     public Transform target;
 
     void Start()
@@ -24,7 +21,6 @@ public class Enemy : MonoBehaviour
     {
         
         _rigidbody.velocity = (target.position - transform.position).normalized * _movementSpeed;
-        //transform.LookAt(target, Vector3.up);
 
     }
 

@@ -24,12 +24,14 @@ public class DebugTesting : MonoBehaviour
     [SerializeField]
     [Min(0)]
     private int someVariable2 = 0;
+
     [HideInInspector]
     private int someVariable3 = 0;
 
     [Space]
     [Header("Texts")]
-    public string name = "emanuel";
+    private string playerName = "emanuel" ;
+
     [TextArea]
     [Tooltip("One of the great things on games")]
     public string description = "This is a description";
@@ -38,6 +40,13 @@ public class DebugTesting : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(name);
+        Debug.Log(someVariable);
+        Debug.Log(someVariable1);
+        Debug.Log(someVariable2);
+        Debug.Log(someVariable3);
+        Debug.Log(playerName);
+
             Debug.LogWarning("Send a warning to the console");
             Debug.LogError("Send a Error to the console");
             foreach (SimpleEnemy enemy in enemies)
