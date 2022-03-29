@@ -10,11 +10,25 @@ public class WeatherChange : MonoBehaviour
     private string actualWeatherIdDescription;
     private string actualWeatherDescription;
 
+    [SerializeField] DigitalRuby.RainMaker.RainScript2D rainMaker;
+
     private void Start()
     {
         StartCoroutine(GetWeatther());
     }
 
+    private void WeatherChanger()
+    {
+        if(actualWeatherId >=200 && actualWeatherId < 300)
+        {
+            //simple rain
+            rainMaker.RainIntensity += 0.2f;
+        }
+        else
+        {
+            rainMaker.RainIntensity = 1;
+        }
+    }
     IEnumerator GetWeatther()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://api.openweathermap.org/data/2.5/weather?q=bogota&appid=apikey");
@@ -24,6 +38,7 @@ public class WeatherChange : MonoBehaviour
         {
             Debug.LogError("Couldnt get the api data");
             Debug.LogError(www.error);
+            actualWeatherId = 800;
         }
         else
         {
@@ -35,6 +50,7 @@ public class WeatherChange : MonoBehaviour
             Debug.Log(actualWeatherIdDescription);
             Debug.Log(actualWeatherDescription);
         }
-
+        WeatherChanger();
+        StopCoroutine(GetWeatther());
     }
 }
