@@ -28,5 +28,6 @@ public class ScreenFade : MonoBehaviour
     public void Start()
     {
         FadeOut();
+        GameManager.OnPlayerDeath += FadeIn;
     }
 }
