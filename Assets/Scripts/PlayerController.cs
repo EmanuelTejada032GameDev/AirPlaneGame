@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
     {
         _movementVector = inputSystemValueOnMove.Get<Vector2>();
     }
+
+    private void OnFire()
+    {
+        SoundManager.Instance.PlayShoot();
+    }
     private void FixedUpdate()
     {
         _rigidbody.rotation -= _movementVector.x * _rotationSpeed;

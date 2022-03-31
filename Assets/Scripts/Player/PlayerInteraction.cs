@@ -8,7 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            FindObjectOfType<GameManager>().PlayerKilled();
+            GameManager.Instance.PlayerKilled();
             
         }
     }
