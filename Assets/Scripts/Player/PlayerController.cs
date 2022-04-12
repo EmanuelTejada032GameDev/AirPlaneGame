@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     private void OnFire()
     {
         SoundManager.Instance.PlayShoot();
+        GameObject bullet = ObjectPooler.Instance.GetPoolObject("Bullet");
+        bullet.transform.position = transform.position;
+        bullet.SetActive(true);
     }
     private void FixedUpdate()
     {
