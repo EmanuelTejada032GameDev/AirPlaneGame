@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.PlayShoot();
         GameObject bullet = ObjectPooler.Instance.GetPoolObject("Bullet");
         bullet.transform.position = transform.position;
+        bullet.transform.rotation = transform.rotation;
         bullet.SetActive(true);
     }
     private void FixedUpdate()

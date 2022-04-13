@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,14 @@ public class GameManager : MonoBehaviour
     public delegate void PlayerDeath();
     public static event PlayerDeath OnPlayerDeath;
 
+    public static Action OnUpdateScore;
+
     public GameObject GameOverScreen;
+
+    private void OnEnable()
+    {
+      OnUpdateScore += UpdateScoreUI;
+    }
 
     private void Awake()
     {
@@ -58,5 +66,10 @@ public class GameManager : MonoBehaviour
     public void PlayerKilled()
     {
         OnPlayerDeath?.Invoke();
+    }
+
+    public void UpdateScoreUI()
+    {
+        Debug.Log("Updated score");
     }
 }
